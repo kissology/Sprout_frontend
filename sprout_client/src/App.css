@@ -1,7 +1,15 @@
+body {
+  margin:0;
+  padding:0;
+}
+
 .navbar {
-display: flex;
-flex-direction: column;
-justify-content: space-between;
+  display: inline-block;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 10px;
+  width: 100px;
+  height: 100%;
 }
 
 .home {
@@ -33,3 +41,35 @@ justify-content: space-between;
   align-items: center;
   justify-content: center;
 }
+
+.plant-ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 106px;
+}
+
+.plant-card {
+  display: flex;
+  flex-direction: row-default;
+  justify-content: space-evenly;
+  width: 190px;
+  height: 254px;
+  padding: 16px;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 100px 20px 100px 20px white inset;
+}
+
+.plant-img {
+  border: 5px solid black;
+  backdrop-filter: 10px;
+}
+
+.calendar {
+
+}
+
+/* .div.fc.fc-media-screen.fc-direction-ltr.fc-theme-standard {
+  display: flex;
+
+} */

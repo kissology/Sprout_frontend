@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route } from "react-router-dom";
 import NavBar from './Navbar';
 import Browse from './Browse';
@@ -6,11 +6,15 @@ import Manage from './Manage';
 import Care from  './Care';
 import Account from './Account';
 import Home from './Home';
-import { PlantContext } from "./PlantContext";
 
-function App(props) {
+function App() {
+const [plants, setPlants] = useState([])
 
-      const plantContext = useContext(PlantContext)
+      useEffect(() => {
+            fetch("http://www.localhost:3000/plants")
+            .then(response => response.json())
+            .then(plants => setPlants(plants))
+      },[]);
 
   return (
 
@@ -22,7 +26,7 @@ function App(props) {
             <Home/>
       </Route>
       <Route exact path="/browse">
-            <Browse/>
+            <Browse plants={plants}/>
       </Route>
       <Route exact path="/care">
             <Care />
