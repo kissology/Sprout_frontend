@@ -65,11 +65,9 @@ body {
   backdrop-filter: 10px;
 }
 
-.calendar {
-
+ul.plant-ul {
+  text-align: center;
 }
 
-/* .div.fc.fc-media-screen.fc-direction-ltr.fc-theme-standard {
-  display: flex;
 
-} */
+

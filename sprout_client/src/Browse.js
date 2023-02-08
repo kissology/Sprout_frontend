@@ -1,7 +1,7 @@
 import React from 'react';
 import PlantCard from './PlantCard';
 
-function Browse({plants}) {
+function Browse({plants, searchPlants, onChangeSearch}) {
 const plantCards = plants.map((plant) => {
 
     return <PlantCard
@@ -19,13 +19,26 @@ const plantCards = plants.map((plant) => {
 
 })
 
+function handleChange(e){
+    e.preventDefault();
+    onChangeSearch(e.target.value)
 
+}
 
 
     return (
+    <div className='search-bar'>
+        <input
+        type="text"
+        id="search"
+        placeholder="search plants"
+        onChange={handleChange}
+        value={searchPlants}
+        />
       <ul className="plant-ul">
         {plantCards}
     </ul>
+    </div>
     )
 }
 
