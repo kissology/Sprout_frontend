@@ -3,18 +3,31 @@ import Fullcalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { GardenContext } from "./Context/GardenContext";
+import { UserContext } from "./Context/UserContext";
 
 
 function Care() {
-    const { gardens } = useContext(GardenContext);
-  
+    const { user } = useContext(UserContext)
+  const userGardens = user.gardens
 
-const events = gardens.map((events) => ({
-    title: `💧${events.plant.name}`,
-    date: events.update_next_water_date,
-    color: "blue",
+  const waterEvents = userGardens.map((event) => ({
+    title: `💧${event.plant_name}`,
+    date: event.update_next_water_date,
+    }))
+
+const rotateEvents = userGardens.map((event) => ({
+        title: `🔁${event.plant_name}`,
+        date: event.update_next_rotate_date,
+    }))
+
+const pottingEvents = userGardens.map((event) => ({
+    title: `🌱${event.plant_name}`,
+    date: event.update_next_soil_date,
 }))
+
+
+
+
 
 
 
@@ -28,14 +41,9 @@ const events = gardens.map((events) => ({
                 center: "title",
                 end: "dayGridMonth,timeGridWeek,timeGridDay", // will normally be on the right. if RTL, will be on the left
               }}
-              eventClick={
-                function(arg){
-                    alert(arg.events.title)
-                    alert(arg.events.date)
-                }
-              }
               height={"90vh"}
-              events={events}
+              events={waterEvents}
+              
             
             
             />

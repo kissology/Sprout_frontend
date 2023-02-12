@@ -7,15 +7,17 @@ import Manage from './Manage';
 import Care from  './Care';
 import Account from './Account';
 import Home from './Home';
-
-
-
+import Login from './Login';
+import { UserContext } from './Context/UserContext';
 
 function App() {
 const [plants, setPlants] = useState([]);
 const [searchPlants, setSearchPlants] = useState("");
 
-      useEffect(() => {
+const { user, setUser } = useContext(UserContext);
+
+
+useEffect(() => {
             fetch("http://www.localhost:3000/plants")
             .then((response) => response.json())
             .then((plants) => setPlants(plants));
@@ -25,15 +27,30 @@ const plantsToDisplay = plants.filter((plant =>
       plant.name.toLowerCase().includes(searchPlants.toLowerCase())
 ));
 
+      function handleLogin(userLogin) {
+            setUser(userLogin)
+      }
+
+      function handleLogout() {
+            setUser(null)
+      }
+      
   return (
 
     <div className="App">
       <h1>Sprout 🌱</h1>
+      <h3>Welcome, {user.first_name}</h3>
             <NavBar/>
       <Switch>
-            <Route exact path="/">
+            <Route exact path="/home">
                   <Home/>
             </Route>
+            <Route exact path="/">
+             <Login
+            onLogin = {handleLogin}
+            onLogout = {handleLogout}
+            />
+          </Route>
             <Route exact path="/browse">
                   <Browse 
                   plants={plantsToDisplay}
@@ -45,10 +62,12 @@ const plantsToDisplay = plants.filter((plant =>
                   <Care/>
             </Route>
             <Route exact path="/manage">
-                  <Manage/>
+                  <Manage
+                  />
             </Route>
             <Route exact path="/account">
-                  <Account/>
+                  <Account
+                  />
             </Route>
       </Switch>
     </div>

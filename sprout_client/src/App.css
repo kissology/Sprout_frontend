@@ -48,7 +48,14 @@ body {
   grid-gap: 106px;
 }
 
+.user-plant-ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 106px;
+}
+
 .plant-card {
+  text-align: center;
   display: flex;
   flex-direction: row-default;
   justify-content: space-evenly;
@@ -58,6 +65,44 @@ body {
   text-align: center;
   border-radius: 50%;
   box-shadow: 100px 20px 100px 20px white inset;
+}
+
+.user-card {
+  text-align: center;
+  display: flex;
+  flex-direction: row-default;
+  justify-content: space-evenly;
+  width: 190px;
+  height: 254px;
+  padding: 16px;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 100px 20px 100px 20px white inset;
+}
+
+.browse-plant-name{
+  font-size: 30px;
+}
+
+.friendly {
+  font-size: 40px;
+}
+
+.plant-modal {
+  text-align: center;
+}
+
+.div.fade.plant-modal.modal.show {
+  border-radius: 50%;
+  background: linear-gradient(145deg, #dc9f98, #ffbdb5);
+  box-shadow:  22px 22px 44px #c38e87,
+               -22px -22px 44px #ffd4cb;
+}
+
+
+.user-plant-img {
+  border: 5px solid black;
+  backdrop-filter: 10px;
 }
 
 .plant-img {

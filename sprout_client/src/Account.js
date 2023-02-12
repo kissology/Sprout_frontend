@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Account() {
+
+
     return (
-        <div className="account">
-            Account!
-            
+        <div className="user-info">
+            User info!
         </div>
     )
 }

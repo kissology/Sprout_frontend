@@ -4,26 +4,31 @@ import UserPlantCard from './UserPlantCard';
 
 function Manage() {
 
-const { users } = useContext(UserContext);
+const { user } = useContext(UserContext);
+const userPlants = user.plants
+const renderPlants = userPlants.map(plant => {
+    console.log(plant)
+    return <UserPlantCard 
+    key = {plant.id}
+    id={plant.id}
+    name={plant.name}
+    scientificName={plant.scientific_name}
+    lightLevel={plant.light_level}
+    lightPosition={plant.light_position}
+    size={plant.size}
+    environment={plant.environment}
+    kid_friendly= {String(plant.kid_friendly)}
+    pet_friendly= {String(plant.pet_friendly)}
+    image={plant.image}
 
-const userPlant = users.map((user => {
-    console.log(user.plants)
 
-    return <UserPlantCard
-    key = {user.plants.id}
-    name = {user.plants.name}
-    scientificName = {user.plants.scientific_name}
-    user_plant_image = {user.plants.image}
     />
-}))
-
+})
 
     return (
-        <div className="manage">
-            <ul className='user-plant'>
-            {userPlant}
-            </ul>
-        </div>
+        <ul className='user-plant-ul'>
+            {renderPlants}
+        </ul>
     )
 }
 

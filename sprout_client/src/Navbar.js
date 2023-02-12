@@ -6,6 +6,10 @@ function Navbar() {
         <nav>
         <div className='navbar'>
         <Link exact path to="/">
+            Login
+        </Link>
+        <br></br>
+        <Link exact path to="/home">
             Home
         </Link>
         <br></br>

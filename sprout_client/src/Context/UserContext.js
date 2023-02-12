@@ -4,16 +4,11 @@ const UserContext = createContext();
 
 function UserProvider({children}) {
 
-const [users, setUsers] = useState([])
+const [user, setUser] = useState([])
 
-useEffect(() => {
-    fetch("http://www.localhost:3000/users")
-    .then((response) => response.json())
-    .then((user) => setUsers(user))
-},[]);
 
 return (
-    <UserContext.Provider value = {{users, setUsers}}>
+    <UserContext.Provider value = {{user, setUser}}>
         {children}
     </UserContext.Provider>
 )
