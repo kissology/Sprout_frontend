@@ -27,6 +27,8 @@ const plantsToDisplay = plants.filter((plant =>
       plant.name.toLowerCase().includes(searchPlants.toLowerCase())
 ));
 
+
+
       function handleLogin(userLogin) {
             setUser(userLogin)
       }

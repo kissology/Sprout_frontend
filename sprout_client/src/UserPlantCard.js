@@ -24,7 +24,7 @@ function handleEnvironment(environment){
             <h3>{handleEnvironment(environment)}</h3>
             </Modal>
             <img onClick={handleShow} src={image} alt={name} className="user-plant-img"/>
-            <h3>{name}</h3>
+            <button>X</button>
         </li>
     )
 }

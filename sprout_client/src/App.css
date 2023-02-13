@@ -42,11 +42,6 @@ body {
   justify-content: center;
 }
 
-.plant-ul {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 106px;
-}
 
 .user-plant-ul {
   display: grid;
@@ -110,9 +105,21 @@ body {
   backdrop-filter: 10px;
 }
 
-ul.plant-ul {
-  text-align: center;
+ul.user-plant-ul {
+  display: grid;
+  align-items: center;
+  justify-content: space-between;
 }
 
+ul.plant-ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 106px;
+}
+
+.search-bar {
+  position: absolute;
+  
+}
 
 

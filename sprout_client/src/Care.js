@@ -9,24 +9,16 @@ import { UserContext } from "./Context/UserContext";
 function Care() {
     const { user } = useContext(UserContext)
   const userGardens = user.gardens
-
-  const waterEvents = userGardens.map((event) => ({
-    title: `💧${event.plant_name}`,
-    date: event.update_next_water_date,
-    }))
-
-const rotateEvents = userGardens.map((event) => ({
-        title: `🔁${event.plant_name}`,
-        date: event.update_next_rotate_date,
-    }))
-
-const pottingEvents = userGardens.map((event) => ({
-    title: `🌱${event.plant_name}`,
-    date: event.update_next_soil_date,
-}))
+  console.log(userGardens)
 
 
+  const events = userGardens.map((date) => ({
+    title: `💧🔁${date.plant_name}`, 
+    date: date.update_next_water_date
 
+   }));
+
+console.log(events)
 
 
 
@@ -42,10 +34,7 @@ const pottingEvents = userGardens.map((event) => ({
                 end: "dayGridMonth,timeGridWeek,timeGridDay", // will normally be on the right. if RTL, will be on the left
               }}
               height={"90vh"}
-              events={waterEvents}
-              
-            
-            
+            events={events}
             />
         </div>
     )

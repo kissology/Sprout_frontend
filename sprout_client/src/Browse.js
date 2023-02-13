@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PlantCard from './PlantCard';
 
 function Browse({plants, searchPlants, onChangeSearch}) {
@@ -6,6 +6,7 @@ const plantCards = plants.map((plant) => {
 
     return <PlantCard
     key = {plant.id}
+    id = { plant.id }
     name = {plant.name}
     scientific_name = {plant.scientific_name}
     light_level = {plant.light_level}
@@ -18,6 +19,8 @@ const plantCards = plants.map((plant) => {
     />
 
 })
+
+
 
 function handleChange(e){
     e.preventDefault();
@@ -35,6 +38,16 @@ function handleChange(e){
         onChange={handleChange}
         value={searchPlants}
         />
+<div>
+   <select>
+    <option>All</option>
+    <option>Size</option>
+    <option>Arid</option>
+    <option>Humid</option>
+    <option>Kid Friendly</option>
+    <option>Pet Friendly</option>
+   </select>
+</div>
       <ul className="plant-ul">
         {plantCards}
     </ul>
