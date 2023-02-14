@@ -1,10 +1,12 @@
 import React from 'react';
 
 function Home() {
+
     return (
-        <div className="home">
-            Home!
+        <div>
+        <h1>HOME</h1>
         </div>
+    
     )
 }
 

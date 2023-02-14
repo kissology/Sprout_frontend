@@ -4,11 +4,18 @@ import App from './App';
 import './App.css';
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import { GardenProvider } from "./Context/GardenContext";
+import { UserProvider } from './Context/UserContext';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-  <App />
+  <UserProvider>
+    <GardenProvider>
+      <App />
+    </GardenProvider>
+    </UserProvider>
 </BrowserRouter>
 );
 
