@@ -30,28 +30,12 @@ function handleChange(e){
 
 
     return (
-    <div className='search-bar'>
-        <input
-        type="text"
-        id="search"
-        placeholder="search plants"
-        onChange={handleChange}
-        value={searchPlants}
-        />
-<div>
-   <select>
-    <option>All</option>
-    <option>Size</option>
-    <option>Arid</option>
-    <option>Humid</option>
-    <option>Kid Friendly</option>
-    <option>Pet Friendly</option>
-   </select>
-</div>
+<div className="plant-div">
       <ul className="plant-ul">
         {plantCards}
-    </ul>
+        </ul>
     </div>
+    
     )
 }
 

@@ -2,12 +2,11 @@ import React, {useContext} from 'react';
 import { UserContext } from "./Context/UserContext";
 import UserPlantCard from './UserPlantCard';
 
-function Manage() {
+function Manage({onDeletePlant}) {
 
 const { user } = useContext(UserContext);
 const userPlants = user.plants
 const renderPlants = userPlants.map(plant => {
-    console.log(plant)
     return <UserPlantCard 
     key = {plant.id}
     id={plant.id}
@@ -20,15 +19,18 @@ const renderPlants = userPlants.map(plant => {
     kid_friendly= {String(plant.kid_friendly)}
     pet_friendly= {String(plant.pet_friendly)}
     image={plant.image}
+    onDeletePlant={onDeletePlant} 
 
 
     />
 })
 
     return (
+        <div className="browse-div">
         <ul className='user-plant-ul'>
             {renderPlants}
         </ul>
+        </div>
     )
 }
 

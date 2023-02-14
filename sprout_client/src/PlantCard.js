@@ -4,10 +4,11 @@ import { UserContext } from './Context/UserContext';
 import Modal from 'react-bootstrap/Modal';
 
 function PlantCard({name, id, scientific_name, kid_friendly, pet_friendly, image}){
-  const { gardens } = useContext(GardenContext)
-  const { user } = useContext(UserContext)
+  const { gardens, setGardens } = useContext(GardenContext)
+  const { user , setUser} = useContext(UserContext)
   const [show, setShow] = useState(false);
-  const [newGarden, setNewGarden] = useState([]);
+
+  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -34,7 +35,9 @@ function handleAddClick(e){
   }
   fetch("http://www.localhost:3000/gardens", postRequest)
   .then(res => res.json())
-  .then(garden => setNewGarden(...garden,[addGarden])
+  .then(newGarden => {
+    setUser({...user, plants: [...user.plants, newGarden.plant]})
+    setGardens([...gardens,newGarden])}
     )
   }
 
@@ -52,10 +55,10 @@ if (kid_friendly === "true" && pet_friendly === "true"){
 
     return (
       <li  className= "plant-card">
-        <Modal className="plant-modal" show={show} onHide={handleClose}>
+        <Modal className="browse-modal" show={show} onHide={handleClose} size="sm">
           <img src={image} alt={name}></img>
         <h3 className="browse-plant-name">{name}</h3>
-          <h4>{scientific_name}</h4>
+          <h4>({scientific_name})</h4>
           <h4 className="friendly">{friendly(kid_friendly, pet_friendly)}</h4>
         <button className="add-modal-button" onClick={handleAddClick}>Add</button>
         <button className="close-modal-button" variant="primary" onClick={handleClose}> Close </button>

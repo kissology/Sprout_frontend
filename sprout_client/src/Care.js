@@ -8,8 +8,13 @@ import { UserContext } from "./Context/UserContext";
 
 function Care() {
     const { user } = useContext(UserContext)
+    const [show, setShow] = useState(false);
   const userGardens = user.gardens
   console.log(userGardens)
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
 
   const events = userGardens.map((date) => ({
@@ -25,6 +30,7 @@ console.log(events)
 
     return (
         <div className="care">
+
             <Fullcalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView={'dayGridMonth'}

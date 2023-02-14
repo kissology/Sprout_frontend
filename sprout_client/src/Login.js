@@ -33,8 +33,9 @@ function Login({updateUser, onLogin, onLogout}){
 
     return (
         <div className="login">
-        <form onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit}>
             <input
+            className="email-input"
             type="text"
             name="email"
             placeholder="email"
@@ -42,6 +43,7 @@ function Login({updateUser, onLogin, onLogout}){
             onChange = {(e) => setEmail(e.target.value)}></input>
             <br></br>
             <input
+            className="password-input"
             type="text"
             name="password"
             placeholder="password"
@@ -49,9 +51,10 @@ function Login({updateUser, onLogin, onLogout}){
             onChange = {(e) => setPassword(e.target.value)}
             >
             </input>
-            <button type="submit">Login</button>
+            <button type="login" className="login-button">Login</button>
+            <br></br>
+            <button onClick = {handleLogout} type="logout" className="logout-button">Logout</button>
         </form>
-        <button onClick = {handleLogout}>Logout</button>
         </div>
     )
 }
