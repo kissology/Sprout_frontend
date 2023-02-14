@@ -7,14 +7,8 @@ import { UserContext } from "./Context/UserContext";
 
 
 function Care() {
-    const { user } = useContext(UserContext)
-    const [show, setShow] = useState(false);
+  const { user } = useContext(UserContext)
   const userGardens = user.gardens
-  console.log(userGardens)
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
 
 
   const events = userGardens.map((date) => ({
@@ -22,8 +16,6 @@ function Care() {
     date: date.update_next_water_date
 
    }));
-
-console.log(events)
 
 
 

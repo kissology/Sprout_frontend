@@ -30,11 +30,11 @@ function handleEnvironment(environment){
 
 function friendly(kid_friendly, pet_friendly) {
     if (kid_friendly === "true" && pet_friendly === "true"){
-      return `${kidIcon} ${petIcon}`
+      return "💚 🐾"
     } if (kid_friendly === "true") {
-      return `${kidIcon}`
+      return "💚"
     } if (pet_friendly === "true") {
-      return `${petIcon}`
+      return "🐾"
     } else {
       return "Keep out of reach of children and pets"
     }

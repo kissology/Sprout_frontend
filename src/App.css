@@ -413,7 +413,7 @@ button.login-button:active::before {
 div.fc.fc-media-screen.fc-direction-ltr.fc-theme-standard {
   position: relative;
   top: 150px;
-  background-color: #b18597;
+  background-color: #F2D7D5;
   width: 620px;
   border: 5px solid black;
 }
@@ -440,4 +440,13 @@ button.calendar-button {
 div.fade.modal-backdrop.show {
   display: flex;
   justify-content: center;
+}
+
+.home-text {
+  position: absolute;
+  top: 300px;
+  right: 300px;
+  color: black;
+  padding-left: 20px;
+  padding-right: 20px;
 }
