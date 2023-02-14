@@ -22,6 +22,9 @@ function Header (){
         <Link exact path to="/account">
             Account
         </Link>
+        <Link exact path to="/signup">
+            Signup
+        </Link>
     
         </nav>
 

@@ -8,6 +8,7 @@ import Account from './Account';
 import Home from './Home';
 import Login from './Login';
 import Header from './Header';
+import Signup from "./Signup";
 import { UserContext } from './Context/UserContext';
 
 function App() {
@@ -76,6 +77,10 @@ setPlants(newPlantsArray)
             </Route>
             <Route exact path="/account">
                   <Account
+                  />
+            </Route>
+            <Route exact path="/signup">
+                  <Signup
                   />
             </Route>
       </Switch>
