@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import PlantCard from './PlantCard';
+import Searchbar from './Searchbar';
 
-function Browse({plants, searchPlants, onChangeSearch}) {
+function Browse({plants, searchPlant, onChangeSearch}) {
 const plantCards = plants.map((plant) => {
 
     return <PlantCard
@@ -22,15 +23,10 @@ const plantCards = plants.map((plant) => {
 
 
 
-function handleChange(e){
-    e.preventDefault();
-    onChangeSearch(e.target.value)
-
-}
-
 
     return (
 <div className="plant-div">
+    <Searchbar searchPlants={searchPlant} onChangeSearch={onChangeSearch}/>
       <ul className="plant-ul">
         {plantCards}
         </ul>
