@@ -38,7 +38,10 @@ function handleAddClick(e){
   .then(newGarden => {
     setUser({...user, plants: [...user.plants, newGarden.plant]})
     setGardens([...gardens,newGarden])}
-    )
+  )
+  .then(() => {
+    alert("Plant was added to your garden!")
+  })
   }
 
 function friendly(kid_friendly, pet_friendly) {
@@ -54,6 +57,7 @@ if (kid_friendly === "true" && pet_friendly === "true"){
 }
 
     return (
+
       <li  className= "plant-card">
         <Modal className="browse-modal" show={show} onHide={handleClose} size="sm">
           <img src={image} alt={name}></img>

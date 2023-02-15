@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 
-function Login({updateUser, onLogin, onLogout}){
+function Login({updateUser, onLogin}){
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-
+    const style = {
+        color: "black",
+        position: "relative",
+        top: "20px",
+    }
     function handleSubmit(e) {
         e.preventDefault()
         const user ={
@@ -20,16 +24,15 @@ function Login({updateUser, onLogin, onLogout}){
         }).then ((r) => {
             if(r.ok) {
                 r.json().then((user) => onLogin(user))
+            } else {
+                throw new Error("Invalid Username or Password")
             }
+        }).catch(error => {
+            alert("Invalid Username or Password", error);
         });
+
     }
 
-    function handleLogout(){
-        fetch("http://localhost:3000/logout", {
-            method: "DELETE",
-        })
-        .then(() => onLogout())
-    }
 
     return (
         <div className="login">
@@ -53,7 +56,7 @@ function Login({updateUser, onLogin, onLogout}){
             </input>
             <button type="login" className="login-button">Login</button>
             <br></br>
-            <button onClick = {handleLogout} type="logout" className="logout-button">Logout</button>
+            <p style={{color: "black", position: "relative", top: "50px"}}>Not Registered? Signup!</p>
         </form>
         </div>
     )

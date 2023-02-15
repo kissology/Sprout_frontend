@@ -6,7 +6,7 @@ import petIcon from './icons/icons8-pets-50.png';
 import kidIcon from './icons/icons8-baby-face-50.png';
 
 
-function UserPlantCard({name, scientificName, lightLevel, lightPosition, size, environment, kid_friendly, pet_friendly, image, onDeletePlant}){
+function UserPlantCard({id, name, scientificName, lightLevel, lightPosition, size, environment, kid_friendly, pet_friendly, image, onDeletePlant}){
     const [show, setShow] = useState(false);
     const { user, setUser } = useContext(UserContext);
     const {gardens, setGardens} = useContext(GardenContext);
@@ -21,12 +21,12 @@ function handleEnvironment(environment){
 }
 }
 
-// function handleDeleteClick(id) {
-//     fetch(`http://localhost:3000/gardens${id}`,
-//     {method: 'DELETE'}
-//     )
-//     onDeletePlant(id)
-// }
+function handleDeleteClick(id) {
+    fetch(`http://localhost:3000/gardens${id}`,
+    {method: 'DELETE'}
+    )
+    onDeletePlant(id)
+}
 
 function friendly(kid_friendly, pet_friendly) {
     if (kid_friendly === "true" && pet_friendly === "true"){
@@ -50,8 +50,8 @@ function friendly(kid_friendly, pet_friendly) {
             <h3>{friendly(kid_friendly, pet_friendly)}</h3>
             <button className="edit-plant-button">Edit</button>
             <button className="delete-plant-button"
-            // onClick={handleDeleteClick}
-            >Delete</button>
+            onClick={handleDeleteClick}
+            >Remove</button>
             <button className="close-user-modal"onClick={handleClose}>Close</button>
             </Modal>
             <img onClick={handleShow} src={image} alt={name} className="user-plant-img"/>

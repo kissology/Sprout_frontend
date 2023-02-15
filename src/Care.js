@@ -3,13 +3,26 @@ import Fullcalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { UserContext } from "./Context/UserContext";
+import { GardenContext } from "./Context/GardenContext";
+import { UserContext } from './Context/UserContext';
 
 
 function Care() {
+  const { gardens } = useContext(GardenContext)
   const { user } = useContext(UserContext)
+
   const userGardens = user.gardens
 
+  
+//   const gardenArray = gardens.map(garden => {
+//     if (garden.user_id === user.id) {
+//       return user.gardens;
+//     }
+//   })
+
+//   const datesArray = gardenArray.map(dates => console.log(dates[1].next_water_date))
+  
+//  console.log(datesArray)
 
   const events = userGardens.map((date) => ({
     title: `💧🔁${date.plant_name}`, 
@@ -18,12 +31,9 @@ function Care() {
    }));
 
 
-
-
     return (
         <div className="care">
-
-            <Fullcalendar
+        <Fullcalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView={'dayGridMonth'}
             headerToolbar={{
