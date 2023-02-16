@@ -19,11 +19,9 @@ const [searchPlants, setSearchPlants] = useState("");
 const { user, setUser } = useContext(UserContext);
 const {gardens, setGardens} = useContext(GardenContext);
 
-const userPlants = user.plants.map(plants => {
-      return plants.id
-})
+const userPlants = user.plants
 
-
+const userGardens = user.gardens
 
 useEffect(() => {
             fetch("http://www.localhost:3000/plants")
@@ -37,11 +35,14 @@ const plantsToDisplay = plants.filter((plant =>
 
 
 function handleDeletePlant(id){
-const deletePlant = userPlants.filter((userPlant) => userPlant.id !== id)
-setGardens(deletePlant)
+const userPlantsArray = userPlants.filter((userPlant) => userPlant.id !== id)
+setUser({...user, plants: userPlantsArray})
 }
 
-
+// function renderCalendar(){
+//       const addDate = userGardens.map((date) => date.update_next_water_date)
+//       setUser({...gardens, update_next_water_date: addDate})
+// }
 
       function handleLogin(userLogin) {
             setUser(userLogin)
@@ -55,9 +56,7 @@ setGardens(deletePlant)
 
     <div className="App">
       <div className="top-page">
-      <h1 >Sprout 🌱</h1>
-      <br></br>
-
+      <h1>Sprout 🌱</h1>
       <h3>Welcome, {user.first_name}</h3>
       </div>
       <Header/>
@@ -75,10 +74,12 @@ setGardens(deletePlant)
                   plants={plantsToDisplay}
                   searchPlant={searchPlants} 
                   onChangeSearch={setSearchPlants}
+                  // updateCalendar={renderCalendar}
                   />
             </Route>
             <Route exact path="/care">
-                  <Care/>
+                  <Care
+                  />
             </Route>
             <Route exact path="/manage">
                   <Manage

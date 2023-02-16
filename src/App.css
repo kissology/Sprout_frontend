@@ -449,10 +449,9 @@ button.login-button:active::before {
   font-size: 18px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  display: inline-block;
   text-align: center;
   font-weight: bold;
-  padding: 0.7em 2em;
+  padding: 0.2em 2em;
   border: 3px solid #0093AF;
   border-radius: 2px;
   position: relative;
@@ -461,6 +460,12 @@ button.login-button:active::before {
   text-decoration: none;
   transition: 0.3s ease all;
   z-index: 1;
+ }
+
+ .edit-button-div{
+  position: relative;
+  top: 230px;
+  right: 160px;
  }
 
  .edit-plant-button:before{

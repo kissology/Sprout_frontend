@@ -24,6 +24,7 @@ function Login({updateUser, onLogin}){
         }).then ((r) => {
             if(r.ok) {
                 r.json().then((user) => onLogin(user))
+                alert("You are successfully logged in!")
             } else {
                 throw new Error("Invalid Username or Password")
             }

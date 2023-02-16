@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PlantCard from './PlantCard';
 import Searchbar from './Searchbar';
 
-function Browse({plants, searchPlant, onChangeSearch}) {
+function Browse({plants, searchPlant, onChangeSearch, updateCalendar}) {
 const plantCards = plants.map((plant) => {
 
     return <PlantCard
@@ -17,6 +17,7 @@ const plantCards = plants.map((plant) => {
     kid_friendly = {String(plant.kid_friendly)}
     pet_friendly = {String(plant.pet_friendly)}
     image = {plant.image}
+    onUpdateCalendar ={updateCalendar}
     />
 
 })

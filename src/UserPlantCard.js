@@ -6,12 +6,17 @@ import petIcon from './icons/icons8-pets-50.png';
 import kidIcon from './icons/icons8-baby-face-50.png';
 
 
-function UserPlantCard({id, name, scientificName, lightLevel, lightPosition, size, environment, kid_friendly, pet_friendly, image, onDeletePlant}){
+
+function UserPlantCard({plant, onDeletePlant}){
     const [show, setShow] = useState(false);
     const { user, setUser } = useContext(UserContext);
     const {gardens, setGardens} = useContext(GardenContext);
+    const [newPlantName, setNewPlantName] = useState("")
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+
+  const {id, name, scientificName, lightLevel, lightPosition, size, environment, kid_friendly, pet_friendly, image} = plant
 
 function handleEnvironment(environment){
     if (environment === "arid"){
@@ -21,12 +26,29 @@ function handleEnvironment(environment){
 }
 }
 
-function handleDeleteClick(id) {
-    fetch(`http://localhost:3000/gardens${id}`,
-    {method: 'DELETE'}
-    )
+function handleNameChange(e){
+  setNewPlantName(e.target.value)
+}
+function handleNameUpdate(){
+  fetch(`http://localhost:3000//update_plant_name/${user.id}`, {
+  method: "PATCH",
+  body: JSON.stringify({plant_name: newPlantName}),
+  headers: {
+    'Content-Type': 'application/json'
+  }
+  })
+  .then(res => res.json())
+  .then(data => {
+    setUser({...user, plant_name: data.plant_name})
+  })
+}
+function handleDeleteClick() {
+    fetch(`http://localhost:3000/delete_gardens/${plant.id}/${user.id}`,
+    {method: 'DELETE'})
     onDeletePlant(id)
 }
+
+
 
 function friendly(kid_friendly, pet_friendly) {
     if (kid_friendly === "true" && pet_friendly === "true"){
@@ -44,17 +66,20 @@ function friendly(kid_friendly, pet_friendly) {
     return(
         <li className="user-card">
             <Modal className="manage-modal" show={show} onHide={handleClose} size='sm'>
-            <h3>({scientificName})</h3>
+            <br></br>
+            <input value={newPlantName} onChange={handleNameChange} type="text" placeholder="Rename" style={{"text-align":"center", "font-size": "25px", "font-weight": "bold"}}></input>
+            <h3>{scientificName}</h3>
             <h3>{name} loves {lightLevel}, {lightPosition} light.</h3>
             <h3>{handleEnvironment(environment)}</h3>
             <h3>{friendly(kid_friendly, pet_friendly)}</h3>
-            <button className="edit-plant-button">Edit</button>
             <button className="delete-plant-button"
             onClick={handleDeleteClick}
             >Remove</button>
+            <button onClick={handleNameUpdate} className="edit-plant-button">Edit</button>
             <button className="close-user-modal"onClick={handleClose}>Close</button>
             </Modal>
-            <img onClick={handleShow} src={image} alt={name} className="user-plant-img"/>
+            <img src={image} alt={name} className="user-plant-img"/>
+            <button onClick={handleShow} className="plant-info-button">Info</button>
         
         </li>
     )

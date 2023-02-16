@@ -3,10 +3,11 @@ import { GardenContext } from './Context/GardenContext';
 import { UserContext } from './Context/UserContext';
 import Modal from 'react-bootstrap/Modal';
 
-function PlantCard({name, id, scientific_name, kid_friendly, pet_friendly, image}){
+function PlantCard({name, id, scientific_name, kid_friendly, pet_friendly, image, onUpdateCalendar}){
   const { gardens, setGardens } = useContext(GardenContext)
   const { user , setUser} = useContext(UserContext)
   const [show, setShow] = useState(false);
+  const [updateEvents, setUpdateEvents] = useState([])
 
   
   const handleClose = () => setShow(false);
@@ -36,8 +37,11 @@ function handleAddClick(e){
   fetch("http://www.localhost:3000/gardens", postRequest)
   .then(res => res.json())
   .then(newGarden => {
-    setUser({...user, plants: [...user.plants, newGarden.plant]})
-    setGardens([...gardens,newGarden])}
+    console.log(newGarden)
+    setUser({...user, plants: [...user.plants, newGarden.plant], gardens: [...user.gardens, newGarden]})
+    setGardens([...gardens, newGarden])
+  }
+
   )
   .then(() => {
     alert("Plant was added to your garden!")
@@ -72,3 +76,4 @@ if (kid_friendly === "true" && pet_friendly === "true"){
     )
     }
 export default PlantCard;   
+

@@ -8,32 +8,18 @@ import { UserContext } from './Context/UserContext';
 
 
 function Care() {
-  const { gardens } = useContext(GardenContext)
   const { user } = useContext(UserContext)
 
-  const userGardens = user.gardens
-
+console.log(user)
   
-//   const gardenArray = gardens.map(garden => {
-//     if (garden.user_id === user.id) {
-//       return user.gardens;
-//     }
-//   })
-
-//   const datesArray = gardenArray.map(dates => console.log(dates[1].next_water_date))
-  
-//  console.log(datesArray)
-
-  const events = userGardens.map((date) => ({
-    title: `💧🔁${date.plant_name}`, 
-    date: date.update_next_water_date
-
-   }));
-
+const events = user.gardens.map((date) => ({
+  title: `💧🔁${date.plant_name}`, 
+  date: date.update_next_water_date
+ }));
 
     return (
         <div className="care">
-        <Fullcalendar
+       <Fullcalendar
             plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
             initialView={'dayGridMonth'}
             headerToolbar={{
