@@ -13,8 +13,8 @@ const renderPlants = userPlants.map(plant => {
     // id={plant.id}
     // name={plant.name}
     // scientificName={plant.scientific_name}
-    // lightLevel={plant.light_level}
-    // lightPosition={plant.light_position}
+    lightLevel={plant.light_level}
+    lightPosition={plant.light_position}
     // size={plant.size}
     // environment={plant.environment}
     // kid_friendly= {String(plant.kid_friendly)}

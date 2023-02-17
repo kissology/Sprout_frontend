@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
-function Login({updateUser, onLogin}){
+function Login({onLogin}){
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -23,8 +24,10 @@ function Login({updateUser, onLogin}){
             body: JSON.stringify({user}),
         }).then ((r) => {
             if(r.ok) {
-                r.json().then((user) => onLogin(user))
+                r.json().then((user) => {
+                    onLogin(user)
                 alert("You are successfully logged in!")
+            })
             } else {
                 throw new Error("Invalid Username or Password")
             }
@@ -33,7 +36,6 @@ function Login({updateUser, onLogin}){
         });
 
     }
-
 
     return (
         <div className="login">
@@ -48,7 +50,7 @@ function Login({updateUser, onLogin}){
             <br></br>
             <input
             className="password-input"
-            type="text"
+            type="password"
             name="password"
             placeholder="password"
             value = {password}
@@ -57,7 +59,7 @@ function Login({updateUser, onLogin}){
             </input>
             <button type="login" className="login-button">Login</button>
             <br></br>
-            <p style={{color: "black", position: "relative", top: "50px"}}>Not Registered? Signup!</p>
+            <p style={{color: "black", position: "relative", top: "50px"}}>Not Registered? <Link exact path to="/signup">Signup</Link></p>
         </form>
         </div>
     )

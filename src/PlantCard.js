@@ -3,18 +3,16 @@ import { GardenContext } from './Context/GardenContext';
 import { UserContext } from './Context/UserContext';
 import Modal from 'react-bootstrap/Modal';
 
-function PlantCard({name, id, scientific_name, kid_friendly, pet_friendly, image, onUpdateCalendar}){
+function PlantCard({name, id, scientific_name, kid_friendly, pet_friendly, image}){
   const { gardens, setGardens } = useContext(GardenContext)
   const { user , setUser} = useContext(UserContext)
   const [show, setShow] = useState(false);
-  const [updateEvents, setUpdateEvents] = useState([])
-
   
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   let today = new Date()
-  let date = today.getFullYear() + '-' + ("0" +(today.getMonth() + 1)) + '-' + today.getDate();
+let date = today.getFullYear() + '-' + ("0" +(today.getMonth() + 1)) + '-' + today.getDate();
 
   const addGarden = {
     user_id: user.id,
