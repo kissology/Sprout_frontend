@@ -1,9 +1,8 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useContext} from 'react';
 import Fullcalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { GardenContext } from "./Context/GardenContext";
 import { UserContext } from './Context/UserContext';
 
 

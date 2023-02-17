@@ -58,12 +58,12 @@ fetch("http://localhost:3000/signup", postRequest)
             <br></br>
             <input value={email} type="type" placeholder="E-mail" onChange={(e) => setEmail(e.target.value)}/>
             <br></br>
-            <input value={password} type="type" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
+            <input value={password} type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
             <br></br>
             <input value={phoneNumber} type="type" placeholder="Phone Number" onChange={(e) => setPhoneNumber(e.target.value)}/>
             <br></br>
             <button>Submit</button>
-        </form>
+            </form>
  )
 }
 export default Signup;

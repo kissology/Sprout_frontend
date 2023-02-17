@@ -13,17 +13,14 @@ function Header (){
         <Link exact path to="/browse">
             Browse
         </Link>
-        <Link exact path to="/care">
-            Care
-        </Link>
         <Link exact path to="/manage">
             Manage
         </Link>
+        <Link exact path to="/care">
+            Care
+        </Link>
         <Link exact path to="/account">
             Account
-        </Link>
-        <Link exact path to="/signup">
-            Signup
         </Link>
     
         </nav>

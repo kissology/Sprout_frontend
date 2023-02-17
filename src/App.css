@@ -3,10 +3,10 @@ body {
   margin:0;
   padding:0;
   background-color:#005f69;
-  color:#ffe3e2;
-  background-image: url("./backgrounds/1556822.jpg");
+  color:#b18597;
+  background-image: url("./backgrounds/Screen Shot 2023-02-16 at 7.42.09 PM.png");
   background-attachment: fixed;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .top-page {
@@ -18,15 +18,16 @@ nav.nav-bar{
  display: flex;
  flex-direction: row ;
  justify-content: space-around;
- font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+ font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
  font-size: 30px;
  font-weight: lighter;
  background-color: #005f69;
  position: relative;
- top: 45px;
+ top: 25px;
  height: 100px;
  opacity: .8;
 }
+
 
 nav.nav-bar a {
   color:#F2D7D5;
@@ -43,11 +44,12 @@ height: 40px;
 
 .signup {
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   align-items: center;
   justify-content: center;
   position: relative;
   top: 100px;
+  backdrop-filter: 10px;
 }
 
 input#search {
@@ -61,7 +63,7 @@ input#search {
   outline: none;
   background-color: #f3f3f4;
   color: #0d0c22;
-  transition: .3s ease;
+  transition: .3s ease
 }
 
 input#search::placeholder {
@@ -88,7 +90,7 @@ div.login {
   justify-content: center;
   align-items: center;
   position: relative;
-  top: 100px;
+  top: 70px;
 }
 
 
@@ -445,6 +447,57 @@ button.login-button:active::before {
   transform: scale(0.9);
  }
 
+.close-user-modal-button {
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #0093AF;
+  border-radius: 2px;
+  position: relative;
+  bottom: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #0093AF;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+
+.close-user-modal-button:before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #0093AF;
+  z-index: -1;
+}
+
+.close-user-modal-button:hover, .close-user-modal-button:focus{
+  color: #ffe9e9;
+  font-weight: bold;
+}
+
+
+.close-user-modal-button:hover:before, .close-user-modal-button:focus:before{
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+ }
+
+ .close-user-modal-button:active {
+  transform: scale(0.9);
+ }
+
+
  .edit-plant-button{
   font-size: 18px;
   letter-spacing: 2px;
@@ -647,8 +700,8 @@ div.fade.modal-backdrop.show {
 .home-text {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
   position: absolute;
-  top: 300px;
-  right: 300px;
+  top: 450px;
+  right: 100px;
   color: black;
   padding-left: 20px;
   padding-right: 20px;
@@ -768,18 +821,221 @@ div.fc.fc-media-screen.fc-direction-ltr.fc-theme-standard {
   border: 5px solid black;
 }
 
-h2#fc-dom-1.fc-toolbar-title {
+h2#fc-dom-339.fc-toolbar-title {
 color:#005f69;
 font-weight: bold;
 }
 
-.edit-account-info-button {
+.account-buttons {
   position: relative;
-  top: 20px
+  top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
+.edit-account-info-button {
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #0093AF;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #0093AF;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
 
-@keyframes wipe-in-top-right {
+.edit-account-info-button:before{
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #0093AF;
+  z-index: -1;
+}
+
+.edit-account-info-button:hover, .edit-account-info-button:focus{
+  color: #ffe9e9;
+  font-weight: bold;
+ }
+
+
+
+
+ .edit-account-info-button:hover:before, .edit-account-info-button:focus:before{
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+ }
+
+ .edit-account-info-button:active {
+  transform: scale(0.9);
+ }
+
+ .reminder-button {
+  font-size: 18px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  border: 3px solid #0093AF;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #0093AF;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+
+.reminder-button:before{
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #0093AF;
+  z-index: -1;
+}
+
+.reminder-button:hover, .reminder-button:focus{
+  color: #ffe9e9;
+  font-weight: bold;
+ }
+
+
+
+ .reminder-button:hover:before, .reminder-button:focus:before{
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+ }
+
+ .reminder-button:active {
+  transform: scale(0.9);
+ }
+
+ .update-email-button {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  width: 100px;
+  padding: 0.4em 1em;
+  border: 3px solid #0093AF;
+  border-radius: 2px;
+  position: relative;
+  left: 95px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #0093AF;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+.update-email-button:before{
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #0093AF;
+  z-index: -1;
+}
+
+.update-email-button:hover, .update-email-button:focus{
+  color: #ffe9e9;
+  font-weight: bold;
+ }
+
+
+
+ .update-email-button:hover:before, .update-email-button:focus:before{
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+ }
+
+ .update-email-button:active {
+  transform: scale(0.9);
+ }
+
+ .update-address-button {
+  font-size: 12px;
+  width: 100px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: inline-block;
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  border: 3px solid #0093AF;
+  border-radius: 2px;
+  position: relative;
+  left: 95px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
+  color: #0093AF;
+  text-decoration: none;
+  transition: 0.3s ease all;
+  z-index: 1;
+}
+.update-address-button:before{
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #0093AF;
+  z-index: -1;
+}
+
+.update-address-button:hover, .update-address-button:focus{
+  color: #ffe9e9;
+  font-weight: bold;
+ }
+
+
+
+ .update-address-button:hover:before, .update-address-button:focus:before{
+  transition: 0.5s all ease;
+  left: 0;
+  right: 0;
+  opacity: 1;
+ }
+
+ .update-address-button:active {
+  transform: scale(0.9);
+ }
+
+
+
+/* @keyframes wipe-in-top-right {
   from {
     clip-path: polygon(-50% 50%, 50% 150%, 50% 150%, -50% 50%);
   }
@@ -790,4 +1046,4 @@ font-weight: bold;
 
 [transition-style="in:wipe:top-right"] {
   animation: 2.5s cubic-bezier(.25, 1, .30, 1) wipe-in-top-right both;
-}
+} */

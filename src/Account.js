@@ -1,11 +1,9 @@
 import React, { useState, useContext} from 'react';
 import { UserContext } from './Context/UserContext';
-import { GardenContext } from './Context/GardenContext';
 import Modal from 'react-bootstrap/Modal';
 
 function Account({onLogout}) {
 const { user, setUser } = useContext(UserContext)
-const { gardens, setGardens } = useContext(GardenContext)
 const [show, setShow] = useState(false);
 const [newEmail, setNewEmail] = useState("");
 const [newAddress, setNewAddress] = useState("");
@@ -15,6 +13,7 @@ const [newAddress, setNewAddress] = useState("");
     e.preventDefault();
     setShow(false);
  }
+
 
  const handleShow = () => setShow(true);
 
@@ -62,32 +61,28 @@ const [newAddress, setNewAddress] = useState("");
     .then(() => onLogout())
 }
 
-function handleReminderClick() {
-    fetch(`http://localhost:3000/reminder/${gardens.id}`, {
-        method: 'POST',
-    })
+function handleReminderClick(){
+    alert("Message sent! Check your mobile device")
 }
-
 
     return (
         <div className="account">
             <div className="account-text">
-         <h3>{user.first_name} {user.last_name}</h3>
-         <h3>{user.email}</h3>
-         <h3>{user.street_address}</h3>
-         <button onClick={handleReminderClick}>Reminder</button>
+         <h3>First: {user.first_name} {user.last_name}</h3>
+         <h3>Email: {user.email}</h3>
+         <h3>Address: {user.street_address}</h3>
+         <h3>Zipcode: {user.zipcode}</h3>
+         <div className="account-buttons">
+         <button onClick={handleReminderClick} className="reminder-button">Reminder</button>
          <button className="edit-account-info-button" onClick={handleShow}>Edit Account Info</button>
          </div>
+         </div>
          <Modal className="edit-account-modal" show={show} onHide={handleClose} size="sm">
-            {/* <input type="text" placeholder="First Name"/>
+            <input value={newEmail} onChange={handleEmailChange} type="text" placeholder="Email" style={{"text-align":"center", "font-size":"25px"}}/>
+            <button className="update-email-button" onClick={handleEmailUpdate}>Update</button>
             <br></br>
-            <input type="text" placeholder="Last Name"/>
-            <br></br> */}
-            <input value={newEmail} onChange={handleEmailChange} type="text" placeholder="Email"/>
-            <button onClick={handleEmailUpdate}>Update</button>
-            <br></br>
-            <input value={newAddress} onChange={handleAddressChange} type="text" placeholder="Address"/>
-            <button onClick={handleAddressUpdate}>Update</button>
+            <input value={newAddress} onChange={handleAddressChange} type="text" placeholder="Address" style={{"text-align":"center", "font-size":"25px"}}/>
+            <button className="update-address-button" onClick={handleAddressUpdate}>Update</button>
             <br></br>
             <button className="close-modal-button" variant="primary" onClick={handleClose}> Close </button>
         </Modal>
@@ -98,5 +93,4 @@ function handleReminderClick() {
       </div>
     )
 }
-
 export default Account;
