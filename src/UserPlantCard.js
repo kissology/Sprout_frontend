@@ -5,7 +5,7 @@ import { GardenContext } from './Context/GardenContext';
 
 
 
-function UserPlantCard({plant, onDeletePlant, lightLevel, lightPosition}){
+function UserPlantCard({id, name, scientificName, size, environment, kid_friendly, pet_friendly, image, onDeletePlant, lightLevel, lightPosition, plant}){
     const [show, setShow] = useState(false);
     const { user, setUser } = useContext(UserContext);
     const {gardens, setGardens} = useContext(GardenContext);
@@ -14,7 +14,7 @@ function UserPlantCard({plant, onDeletePlant, lightLevel, lightPosition}){
     const handleShow = () => setShow(true);
 
 
-  const {id, name, scientificName, size, environment, kid_friendly, pet_friendly, image} = plant
+  // const {id, name, scientificName, size, environment, kid_friendly, pet_friendly, image} = plant
 
 function handleEnvironment(environment){
     if (environment === "arid"){
@@ -50,17 +50,16 @@ function handleDeleteClick() {
 
 
 function friendly(kid_friendly, pet_friendly) {
-    if (kid_friendly === "true" && pet_friendly === "true"){
-      return "💚 🐾"
-    } if (kid_friendly === "true") {
-      return "💚"
-    } if (pet_friendly === "true") {
-      return "🐾"
-    } else {
-      return "Keep out of reach of children and pets"
-    }
-    }
-
+  if (kid_friendly === "true" && pet_friendly === "true"){
+    return "💚 🐾"
+  } if (kid_friendly === "true") {
+    return "💚"
+  } if (pet_friendly === "true") {
+    return "🐾"
+  } else {
+    return "Keep out of reach of children and pets"
+  }
+  }
 
     return(
         <li className="user-card">
