@@ -62,7 +62,7 @@ fetch("http://localhost:3000/signup", postRequest)
             <br></br>
             <input value={phoneNumber} type="type" placeholder="Phone Number" onChange={(e) => setPhoneNumber(e.target.value)}/>
             <br></br>
-            <button>Submit</button>
+            <button className='sign-up-button'>Signup</button>
             </form>
  )
 }
