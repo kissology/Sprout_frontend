@@ -3,7 +3,7 @@ import { GardenContext } from './Context/GardenContext';
 import { UserContext } from './Context/UserContext';
 import Modal from 'react-bootstrap/Modal';
 
-function PlantCard({name, id, scientific_name, kid_friendly, pet_friendly, image}){
+function PlantCard({name, id, scientific_name, kid_friendly, pet_friendly, image, size, environment}){
   const { gardens, setGardens } = useContext(GardenContext)
   const { user , setUser} = useContext(UserContext)
   const [show, setShow] = useState(false);
@@ -11,7 +11,7 @@ function PlantCard({name, id, scientific_name, kid_friendly, pet_friendly, image
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  let today = new Date()
+let today = new Date()
 let date = today.getFullYear() + '-' + ("0" +(today.getMonth() + 1)) + '-' + today.getDate();
 
   const addGarden = {
@@ -53,6 +53,10 @@ if (kid_friendly === "true" && pet_friendly === "true"){
   return "💚"
 } if (pet_friendly === "true") {
   return "🐾"
+} if (kid_friendly === "false" && pet_friendly === "true") {
+  return "🐾"
+} if (kid_friendly === "true" && pet_friendly === "false") {
+  return "💚"
 } else {
   return "Keep out of reach of children and pets"
 }
@@ -66,6 +70,7 @@ if (kid_friendly === "true" && pet_friendly === "true"){
         <h3 className="browse-plant-name">{name}</h3>
           <h4>({scientific_name})</h4>
           <h4 className="friendly">{friendly(kid_friendly, pet_friendly)}</h4>
+          <h4 style={{"font-weight":"bold"}}> Size:{size.toUpperCase()}</h4>
         <button className="add-modal-button" onClick={handleAddClick}>Add</button>
         <button className="close-modal-button" variant="primary" onClick={handleClose}> Close </button>
         </Modal>

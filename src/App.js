@@ -10,40 +10,70 @@ import Login from './Login';
 import Header from './Header';
 import Signup from "./Signup";
 import { UserContext } from './Context/UserContext';
+import { GardenContext } from './Context/GardenContext';
 
 function App() {
-const [plants, setPlants] = useState([]);
-const [searchPlants, setSearchPlants] = useState("");
+  const { user, setUser } = useContext(UserContext);
+  const { gardens, setGardens } = useContext(GardenContext)
+  const [plants, setPlants] = useState([]);
+  const [searchPlants, setSearchPlants] = useState("");
+  const [sortBy, setSortBy] = useState("All");
+  const [filterBy, setFilterBy] = useState("Size");
 
-const { user, setUser } = useContext(UserContext);
+  const userPlants = user.plants;
 
-const userPlants = user.plants
+  useEffect(() => {
+    fetch("http://www.localhost:3000/plants")
+      .then((response) => response.json())
+      .then((plants) => setPlants(plants));
+  },[]);
 
-useEffect(() => {
-            fetch("http://www.localhost:3000/plants")
-            .then((response) => response.json())
-            .then((plants) => setPlants(plants));
-      },[]);
+  const sortedPlants = () => {
+    switch (sortBy) {
+      case "All":
+        return plants; // Return the original unsorted array of plants
+      case "Size":
+        return [...plants].sort((plant1, plant2) => {
+          const sizeOrderMap = { "small": 1, "medium": 2, "large": 3 };
+          const sizeOrder = sizeOrderMap[plant1.size] - sizeOrderMap[plant2.size];
+          return sizeOrder || 0; // Return 0 to keep the original order of the plants array
+        });
+      case "Pet Friendly":
+        return [...plants].sort((plant1, plant2) => {
+          const petOrder = plant2.pet_friendly - plant1.pet_friendly;
+          return petOrder || 0; // Return 0 to keep the original order of the plants array
+        });
+      case "Kid Friendly":
+        return [...plants].sort((plant1, plant2) => {
+          const kidOrder = plant2.kid_friendly - plant1.kid_friendly;
+          return kidOrder || 0; // Return 0 to keep the original order of the plants array
+        });
+      case "Kid and Pet Friendly":
+        return [...plants].sort((plant1, plant2) => {
+          const kidAndPetOrder = plant1.pet_friendly + plant2.pet_friendly + plant1.kid_friendly + plant2.kid_friendly;
+          return kidAndPetOrder || 0; // Return 0 to keep the original order of the plants array
+        });
+      default:
+        return plants; // Return the original unsorted array of plants for unknown sortBy values
+    }
+  };
 
-const plantsToDisplay = plants.filter((plant => 
-      plant.name.toLowerCase().includes(searchPlants.toLowerCase()) 
-));
+  const filteredPlants = sortedPlants().filter(
+    (plant) => plant.name.toLowerCase().includes(searchPlants.toLowerCase())
+  );
 
+  function handleDeletePlant(id) {
+    const userPlantsArray = userPlants.filter((userPlant) => userPlant.id !== id)
+    setUser({...user, plants: userPlantsArray})
+  }
 
-function handleDeletePlant(id){
-const userPlantsArray = userPlants.filter((userPlant) => userPlant.id !== id)
-setUser({...user, plants: userPlantsArray})
-}
+  function handleLogin(userLogin) {
+    setUser(userLogin)
+  }
 
-
-      function handleLogin(userLogin) {
-            setUser(userLogin)
-      }
-
-      function handleLogout() {
-            setUser(null)
-      }
-      
+  function handleLogout() {
+    setUser(null)
+  }
   return (
 
     <div className="App">
@@ -62,9 +92,12 @@ setUser({...user, plants: userPlantsArray})
           </Route>
             <Route exact path="/browse">
                   <Browse 
-                  plants={plantsToDisplay}
-                  searchPlant={searchPlants} 
-                  onChangeSearch={setSearchPlants}
+                  plants={filteredPlants}
+                  sortBy={sortBy}
+                  onChangeSort={setSortBy}
+                  filterBy={filterBy}
+                  onChangeFilter={setFilterBy}
+
                   />
             </Route>
             <Route exact path="/manage">

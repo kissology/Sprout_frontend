@@ -70,9 +70,7 @@ function friendly(kid_friendly, pet_friendly) {
             <h3>{name} loves {lightLevel}, {lightPosition} light.</h3>
             <h3>{handleEnvironment(environment)}</h3>
             <h3>{friendly(kid_friendly, pet_friendly)}</h3>
-            <button className="delete-plant-button"
-            onClick={handleDeleteClick}
-            >Remove</button>
+            <button className="delete-plant-button" onClick={handleDeleteClick}>Remove</button>
             {/* <button onClick={handleNameUpdate} className="edit-plant-button">Edit</button> */}
             <button className="close-user-modal-button"onClick={handleClose}>Close</button>
             </Modal>
