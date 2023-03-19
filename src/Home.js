@@ -1,3 +1,5 @@
+
+
 import React, {useContext} from 'react';
 import { UserContext } from './Context/UserContext';
 import { Link } from "react-router-dom";
@@ -13,7 +15,7 @@ function hasPlants(){
         return <h2>Hey {user.first_name},<br></br><br></br>Welcome to Sprout!<br></br><br></br>You currently have no plants in your garden<br></br> <Link exact path to="/browse" style={{"color": "#b18597"}}>Click Here</Link> to add some.</h2>
     } else {
         if(user.plants.length > 0)
-        return <h2>Welcome, {user.first_name}! 
+        return <h2>Welcome back {user.first_name}! 
         <br></br><br></br>
         Check your care calendar <Link exact path to="/care" style={{"color": "#b18597", "transform": "scale(1.5)", "transition": "transform 500ms ease"}}>here</Link> for updates!
         <br></br><br></br>

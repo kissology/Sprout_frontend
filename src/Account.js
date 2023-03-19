@@ -83,15 +83,16 @@ const formattedDOB = dob.toLocaleDateString("en-US", {
     });
 }
 
- function handleLogout(){
+function handleLogout(){
     fetch("http://localhost:3000/logout", {
         method: "DELETE",
     })
     .then(() => {
-        Logout();
-        alert("You have been logged out successfully")
+        onLogout();
+        alert("You have been logged out successfully");
+        window.location.href = "http://localhost:3001";
     });
- }
+}
 
     return (
         <div className="account">
