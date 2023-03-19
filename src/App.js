@@ -10,11 +10,9 @@ import Login from './Login';
 import Header from './Header';
 import Signup from "./Signup";
 import { UserContext } from './Context/UserContext';
-import { GardenContext } from './Context/GardenContext';
 
 function App() {
   const { user, setUser } = useContext(UserContext);
-  const { gardens, setGardens } = useContext(GardenContext)
   const [plants, setPlants] = useState([]);
   const [searchPlants, setSearchPlants] = useState("");
   const [sortBy, setSortBy] = useState("All");

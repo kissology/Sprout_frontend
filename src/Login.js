@@ -5,11 +5,7 @@ function Login({onLogin}){
 
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const style = {
-        color: "black",
-        position: "relative",
-        top: "20px",
-    }
+    
     function handleSubmit(e) {
         e.preventDefault()
         const user ={
@@ -22,20 +18,21 @@ function Login({onLogin}){
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({user}),
-        }).then ((r) => {
+        })
+        .then((r) => {
             if(r.ok) {
-                r.json().then((user) => {
+                return r.json().then((user) => {
                     onLogin(user)
-                alert("You are successfully logged in!")
-            })
-            } else {
-                throw new Error("Invalid Username or Password")
+                    alert("You are successfully logged in!")
+                })
             }
-        }).catch(error => {
+            throw new Error("Invalid Username or Password")
+        })
+        .catch(error => {
             alert("Invalid Username or Password", error);
         });
-
     }
+
 
     return (
         <div className="login">
