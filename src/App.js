@@ -107,8 +107,7 @@ function App() {
       </div>
     );
   }
-
-  // 🚀 If authenticated, show the app (header + routes)
+  
   return (
     <div className="App">
       <div className="top-page" style={{ display: "flex", justifyContent: "center" }}>

@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
 import { UserContext } from './Context/UserContext';
+import homeBackground from './backgrounds/homepage.webp';
+
 
 function Home() {
     const { user } = useContext(UserContext);
@@ -10,7 +12,7 @@ function Home() {
     return (
         <div className="homepage">
             <img
-                src={require('./backgrounds/homepage.webp')}
+                src={homeBackground}
                 style={{ width: "100vw", height: "100vh" }}
                 className="home-pic"
                 alt="my-home-pic"

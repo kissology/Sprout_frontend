@@ -97,8 +97,9 @@ function handleLogout(){
     return (
         <div className="account">
             <div className="account-text">
-         <h3>First: {user.first_name} {user.last_name}</h3>
-         <h3>Email: {user.email}</h3>
+         <h3>First: {user.first_name}</h3>
+         <h3>Last: {user.last_name}</h3>
+         <h3>E-mail: {user.email}</h3>
          <h3>Address: {user.street_address}</h3>
          <h3>Zipcode: {user.zipcode}</h3>
          <h3>Phone: {user.phone_number}</h3>

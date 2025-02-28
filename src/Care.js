@@ -66,24 +66,36 @@ function Care() {
     return formattedDate;
   }
   
-
+  const hasGardens = user.gardens.length > 0
 
   return (
     <div className="care">
-      <Fullcalendar
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-        initialView={"dayGridMonth"}
-        headerToolbar={{
-          start: "today prev,next",
-          center: "title",
-          end: "dayGridMonth,timeGridWeek,timeGridDay",
-        }}
-        height={"90vh"}
-        events={events}
-      />
-      <br></br>
-      <h1 style={{color: "black", position: "relative", top: "200px", left:"100px", textAlign: "center"}}>Your next scheduled care date is<br></br>{getNextCareDate(user)}</h1>
+      {hasGardens ? (
+        <>
+          <Fullcalendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+            initialView={"dayGridMonth"}
+            headerToolbar={{
+              start: "today prev,next",
+              center: "title",
+              end: "dayGridMonth,timeGridWeek,timeGridDay",
+            }}
+            height={"90vh"}
+            events={events}
+          />
+          <br />
+          <h1 style={{color: "black", position: "relative", top: "200px", left:"100px", textAlign: "center"}}>
+            Your next scheduled care date is<br />{getNextCareDate(user)}
+          </h1>
+        </>
+      ) : (
+        <h2 style={{textAlign: "center", marginTop: "50px"}}>
+          Add plants to your garden to see your personalized care calendar.
+        </h2>
+      )}
     </div>
   );
 }
+
+
 export default Care;
