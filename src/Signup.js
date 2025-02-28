@@ -1,4 +1,5 @@
 import React, { useState }  from 'react';
+import { useNavigate } from 'react-router-dom';   
 
 function Signup(){
     const [newUser, setNewUser] = useState([])
@@ -11,6 +12,8 @@ function Signup(){
     const [password, setPassword] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
 
+    const navigate = useNavigate()
+    
 const newUserObj = {
     first_name: firstName,
     last_name: lastName,
@@ -34,12 +37,23 @@ let postRequest = {
     body: JSON.stringify(newUserObj),
 }
 fetch("http://localhost:3000/signup", postRequest)
-.then(resp => resp.json())
-.then(newUserObj => setNewUser([...newUser, newUserObj])
-)
-.then(() => {
-    alert("Thanks for registering! Happy Gardening!")
+.then(resp => {
+    if (resp.ok) {
+        return resp.json();
+    } else {
+        return resp.json().then(errors => {
+            throw new Error(errors.errors.join(", "));
+        });
+    }
 })
+.then(newUserObj => {
+    setNewUser([...newUser, newUserObj]);
+    alert("Thanks for registering! Happy Gardening!");
+    navigate("/");  
+})
+.catch(error => {
+    alert(`Signup failed: ${error.message}`);
+});
 
 
 }

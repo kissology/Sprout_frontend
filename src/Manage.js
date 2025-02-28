@@ -1,6 +1,7 @@
 import React, {useContext} from 'react';
 import { UserContext } from "./Context/UserContext";
 import UserPlantCard from './UserPlantCard';
+import { Link } from 'react-router-dom'; 
 
 function Manage({onDeletePlant}) {
 
@@ -26,13 +27,22 @@ const renderPlants = userPlants.map(plant => {
     />
 })
 
-    return (
-        <div className="browse-div">
-        <ul className='user-plant-ul'>
-            {renderPlants}
-        </ul>
-        </div>
-    )
+return (
+    <div className="browse-div">
+        {userPlants.length === 0 ? (
+            <p style={{ fontSize: '18px', textAlign: 'center', marginTop: '20px' }}>
+                You have no plants in your garden!{' '}
+                <Link to="/browse" style={{ color: '#b18597', textDecoration: 'underline' }}>
+                    Click here to browse
+                </Link>
+            </p>
+        ) : (
+            <ul className='user-plant-ul'>
+                {renderPlants}
+            </ul>
+        )}
+    </div>
+);
 }
 
 export default Manage;

@@ -3,7 +3,7 @@ import { UserContext } from './Context/UserContext';
 import Modal from 'react-bootstrap/Modal';
 
 function Account({onLogout}) {
-const { user, setUser, Logout } = useContext(UserContext)
+const { user, setUser } = useContext(UserContext)
 const [show, setShow] = useState(false);
 const [newEmail, setNewEmail] = useState("");
 const [newAddress, setNewAddress] = useState("");

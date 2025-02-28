@@ -2,7 +2,7 @@ import React from 'react';
 import PlantCard from './PlantCard';
 import Searchbar from './Searchbar';
 
-function Browse({plants, searchPlant, onChangeSearch, updateCalendar, sortBy, onChangeSort, filterBy, onChangeFilter}) {
+function Browse({plants, searchPlants, onChangeSearch, updateCalendar, sortBy, onChangeSort, filterBy, onChangeFilter}) {
 const plantCards = plants.map((plant) => {
 
     return <PlantCard
@@ -28,7 +28,10 @@ const plantCards = plants.map((plant) => {
     sortBy={sortBy}
     onChangeSort={onChangeSort}
     filterBy={filterBy}
-    onChangeFilter={onChangeFilter}/>
+    onChangeFilter={onChangeFilter}
+    onChangeSearch={onChangeSearch}
+    searchPlants={searchPlants}
+    />
       <ul className="plant-ul">
         {plantCards}
         </ul>

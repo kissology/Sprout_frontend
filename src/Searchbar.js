@@ -1,18 +1,28 @@
 import React, {useState} from 'react';
 
-function SearchBar({sortBy, onChangeSort, filterBy, onChangeFilter }){
+function SearchBar({sortBy, onChangeSort, searchPlant, onChangeSearch}){
 
 
     function handleSortChange(event) {
         onChangeSort(event.target.value);
       }
     
-      function handleFilterChange(event) {
-        onChangeFilter(event.target.value);
+      function handleSearchChange(e) {
+        onChangeSearch(e.target.value)
       }
 
     return (
         <div style={{"font-size":"20px", "color":"#005f69"}}>
+          <strong>Search Plants:</strong>
+            <br />
+            <input
+                type="text"
+                value={searchPlant}
+                onChange={handleSearchChange}
+                placeholder="Search by name"
+                style={{ padding: "5px", margin: "10px 0", width: "200px" }}
+            />
+            <br />
         <strong>Sort by:</strong>
         <br></br>
         <label>
@@ -58,7 +68,7 @@ function SearchBar({sortBy, onChangeSort, filterBy, onChangeFilter }){
           />
           Kid Friendly
         </label>
-        {/* <br></br>
+        <br></br>
         <label>
           <input
             type="radio"
@@ -68,7 +78,7 @@ function SearchBar({sortBy, onChangeSort, filterBy, onChangeFilter }){
             onChange={handleSortChange}
           />
           Kid and Pet Friendly
-        </label> */}
+        </label>
         <br></br>
         <br></br>
       </div>

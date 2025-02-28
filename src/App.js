@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Browse from './Browse';
 import Manage from './Manage';
@@ -16,9 +16,28 @@ function App() {
   const [plants, setPlants] = useState([]);
   const [searchPlants, setSearchPlants] = useState("");
   const [sortBy, setSortBy] = useState("All");
-  const [filterBy, setFilterBy] = useState("Size");
+  const [loading, setLoading] = useState(true);
 
-  const userPlants = user.plants;
+
+  console.log(plants)
+  const userPlants = user?.plants;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    fetch("/me")
+      .then((response) => {
+        if (response.ok) {
+          response.json().then((userData) => {
+            setUser(userData);
+            setLoading(false);
+          });
+        } else {
+          setUser(null);
+          setLoading(false);
+          navigate("/");  // Redirect to login if not authenticated
+        }
+      });
+  }, [setUser, navigate]);
 
   useEffect(() => {
     fetch("http://www.localhost:3000/plants")
@@ -65,60 +84,60 @@ function App() {
     setUser({...user, plants: userPlantsArray})
   }
 
-  function handleLogin(userLogin) {
-    setUser(userLogin)
-  }
-
   function handleLogout() {
     setUser(null)
   }
-  return (
 
-    <div className="App">
-      <div className="top-page" style={{"display": "flex", "flex-direction": "center", "justify-content":"center"}}>
-      <img src={require('./FullLogo_Transparent_NoBuffer.png')} style={{"position": "relative", "top":"20px"}} alt="logo"></img>
+  if (!user) {
+    return (
+      <div className="App">
+        <div className="top-page" style={{ display: "flex", justifyContent: "center" }}>
+          <img
+            src={require('./FullLogo_Transparent_NoBuffer.png')}
+            style={{ position: "relative", top: "20px" }}
+            alt="logo"
+          />
+        </div>
+        <Routes>
+          <Route path="/" element={<Login onLogin={setUser} />} />
+          <Route path="/signup" element={<Signup />} />
+          {/* Redirect everything else to login */}
+          <Route path="*" element={<Login onLogin={setUser} />} />
+        </Routes>
       </div>
-      <Header/>
-      <Switch>
-            <Route exact path="/home">
-                  <Home/>
-            </Route>
-            <Route exact path="/">
-             <Login
-            onLogin = {handleLogin}
-            />
-          </Route>
-            <Route exact path="/browse">
-                  <Browse 
-                  plants={filteredPlants}
-                  sortBy={sortBy}
-                  onChangeSort={setSortBy}
-                  filterBy={filterBy}
-                  onChangeFilter={setFilterBy}
+    );
+  }
 
-                  />
-            </Route>
-            <Route exact path="/manage">
-                  <Manage
-                  onDeletePlant={handleDeletePlant}
-                  />
-            </Route>
-            <Route exact path="/care">
-                  <Care
-                  />
-            </Route>
-            <Route exact path="/account">
-                  <Account
-                   onLogout = {handleLogout}
-                  />
-            </Route>
-            <Route exact path="/signup">
-                  <Signup
-                  />
-            </Route>
-      </Switch>
+  // 🚀 If authenticated, show the app (header + routes)
+  return (
+    <div className="App">
+      <div className="top-page" style={{ display: "flex", justifyContent: "center" }}>
+        <img
+          src={require('./FullLogo_Transparent_NoBuffer.png')}
+          style={{ position: "relative", top: "20px" }}
+          alt="logo"
+        />
+      </div>
+      <Header />
+      <Routes>
+        <Route path="/home" element={<Home />} />
+        <Route path="/browse" element={
+          <Browse
+            plants={filteredPlants}
+            sortBy={sortBy}
+            onChangeSort={setSortBy}
+            searchPlant={searchPlants}             
+          onChangeSearch={setSearchPlants} 
+          />
+        } />
+      <Route path="/manage" element={<Manage onDeletePlant={handleDeletePlant}/>} />
+        <Route path="/care" element={<Care />} />
+        <Route path="/account" element={<Account onLogout={handleLogout}/>} />
+        <Route path="*" element={<Home />} /> 
+      </Routes>
     </div>
   );
 }
+
 
 export default App;

@@ -35,7 +35,6 @@ function handleAddClick(e){
   fetch("http://www.localhost:3000/gardens", postRequest)
   .then(res => res.json())
   .then(newGarden => {
-    console.log(newGarden)
     setUser({...user, plants: [...user.plants, newGarden.plant], gardens: [...user.gardens, newGarden]})
     setGardens([...gardens, newGarden])
   }
